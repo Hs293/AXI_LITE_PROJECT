@@ -29,13 +29,13 @@
 #### 4. Block diagram
 
 ##### 1. Top module
-![다기능 선풍기 drawio](https://github.com/user-attachments/assets/74bc97eb-e585-40b2-9dd5-80bc97e6ac4a)
+![axi blockdiagram drawio](https://github.com/user-attachments/assets/5c5e2e32-8934-4c82-8876-0c399979e5eb)
 
-##### 2. Motor PWM
-![MOTOR PWM 블록](https://github.com/user-attachments/assets/0dbeb739-5485-4383-a180-16cc275aa834)
+##### 2. AXI_MASTER
 
-##### 3. DHT11_RGB
-![dht11 drawio](https://github.com/user-attachments/assets/7ca9d6ed-617f-4c24-8ff3-1efa1241abc7)
+
+##### 3. AXI_SLAVE
+
 
 ------------------------------------------------------
 #### 5. Demo
