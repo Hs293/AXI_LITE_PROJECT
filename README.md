@@ -29,7 +29,7 @@
 #### 4. Block diagram
 
 ##### 1. Top module
-![axi blockdiagram drawio](https://github.com/user-attachments/assets/5c5e2e32-8934-4c82-8876-0c399979e5eb)
+![axi blockdiagram drawio](https://github.com/user-attachments/assets/e7b590a7-a803-419f-ac3e-ae41adc0b869)
 
 ##### 2. AXI_MASTER
 
@@ -38,7 +38,11 @@
 
 
 ------------------------------------------------------
-#### 5. Demo
+#### 5. Waveform
+
+
+------------------------------------------------------
+#### 6. Demo
 
 ##### 1. Full
 [![Video Label](http://img.youtube.com/vi/VGz6qCyDiiQ/0.jpg)](https://youtu.be/VGz6qCyDiiQ)
