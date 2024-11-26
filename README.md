@@ -31,17 +31,19 @@
 ##### 1. Top module
 ![axi blockdiagram drawio](https://github.com/user-attachments/assets/e7b590a7-a803-419f-ac3e-ae41adc0b869)
 
-##### 2. AXI_MASTER
-
-
-##### 3. AXI_SLAVE
-
-
 ------------------------------------------------------
 #### 5. Waveform
 
+##### 1. AXI Write
+![AXI_WRITE](https://github.com/user-attachments/assets/7b3ac84f-05f1-43ae-941a-662c38a9ba2a)
 
-------------------------------------------------------
+##### 2. AXI Read
+![AXI_READ](https://github.com/user-attachments/assets/3cc0a846-be3c-437f-b103-3d397cc1c8e7)
+
+##### 3. DEBUG
+![AXI_BUS_DEBUG2_cut](https://github.com/user-attachments/assets/0833e076-e3a1-4f51-af80-549c1444819e)
+
+-------------------------
 #### 6. Demo
 
 ##### 1. Full
