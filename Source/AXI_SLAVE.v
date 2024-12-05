@@ -160,7 +160,7 @@ module AXI_SLAVE(
     parameter   B_VALID    =    2'b10;
     
    // b reg
-    reg      [1:0 ] B_STATE, B_NEXT_STATE;
+    reg      [1:0] B_STATE, B_NEXT_STATE;
     reg      [1:0] B_DATA;
 
     // b_rotate_state
@@ -186,7 +186,7 @@ module AXI_SLAVE(
                     BVALID   <= 0;
                     if (WVALID && WREADY) begin
                         B_NEXT_STATE <= B_VALID;
-                        B_DATA = 2'b00;
+                        BRESP <= 2'b00;
                     end
                 end
                 
@@ -255,7 +255,7 @@ module AXI_SLAVE(
 
     // r reg
     reg             [2:0]  R_STATE, R_NEXT_STATE;
-    reg             [31:0] R_SAVE_DATA, R_SAVE_REG;
+    reg             [31:0] R_SAVE_DATA;
 
     assign RDATA = R_SAVE_DATA;  // RDATA에 slave_mem 데이터 할당
     // r rotate state
