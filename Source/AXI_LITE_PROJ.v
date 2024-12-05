@@ -11,9 +11,9 @@ module AXI_LITE_PROJ #(
     input                   C_VALID_R,
     input      [31:0]       C_ADRR_R,
     output     [31:0]       C_DATA_READ,
-    input      [3:0 ]       C_STRB
+    input      [3:0 ]       C_STRB,
     //input                   C_READY,
-    //output reg              READY
+    output reg              READY_S
 );
  
  wire                       S_AWREADY;
@@ -32,6 +32,9 @@ module AXI_LITE_PROJ #(
  wire                       M_RVALID;
  wire          [31: 0]      S_RDATA;
  wire          [3 : 0]      M_WSTRB;
+ wire                       READY;
+
+always @(*) READY_S = READY;
 
  AXI_MASTER            AXI_M(
     // CLK, RESET
@@ -53,6 +56,7 @@ module AXI_LITE_PROJ #(
     .BVALID(S_BVALID),
     .BRESP(S_BRESP),
     .BREADY(M_BREADY),
+    .READY(READY),
     
     // read address
     .ARREADY(S_ARREADY),
