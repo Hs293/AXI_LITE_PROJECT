@@ -18,6 +18,7 @@ module AXI_MASTER(
     input              BVALID,
     input      [1:0]   BRESP,
     output reg         BREADY,
+    output reg         READY,
     
     // read address
     input              ARREADY,
@@ -38,7 +39,7 @@ module AXI_MASTER(
     output     [31:0]  C_DATA_READ,
     input      [3:0 ]  C_STRB
     //input              C_READY,
-    //output reg         READY
+
     );
 /////////////////////////////////////////////////////////////////////////////
 
@@ -152,7 +153,7 @@ module AXI_MASTER(
     parameter   B_VALID    =    2'b10;
     
    // b reg
-    reg      [1:0 ] B_STATE, B_NEXT_STATE;
+    reg      [1:0] B_STATE, B_NEXT_STATE;
     reg      [1:0] B_DATA;
 
     // b_rotate_state
@@ -170,7 +171,7 @@ module AXI_MASTER(
         if (!ARESETN) begin
             B_NEXT_STATE <= B_IDLE;
             BREADY       <= 0;
-            //READY        <= 0;
+            READY        <= 0;
         end
         else begin
             case (B_STATE)
@@ -185,6 +186,7 @@ module AXI_MASTER(
                     if (BVALID && BREADY) begin
                         B_NEXT_STATE <= B_IDLE;
                         B_DATA       <= BRESP;
+                        READY        <= 1'b1;
                     end
                 end
             endcase
@@ -244,7 +246,7 @@ module AXI_MASTER(
 
     // r reg
     reg             [2:0]  R_STATE, R_NEXT_STATE;
-    reg             [31:0] R_SAVE_DATA, R_SAVE_REG;
+    reg             [31:0] R_SAVE_DATA;
     reg             [31:0] R_MASTER_DATA;
 
     // connect
@@ -264,25 +266,28 @@ module AXI_MASTER(
     always @(negedge ACLK) begin
         if(!ARESETN)begin
             R_NEXT_STATE <= R_IDLE;
+            R_SAVE_DATA <= 0;
         end
         else begin
             case(R_STATE)
                 R_IDLE : begin
                     RVALID <= 0;
+                    R_MASTER_DATA <= R_SAVE_DATA;
                     if(C_VALID_R) begin
                         R_NEXT_STATE <= R_VALID;
                     end
                 end
+
                 R_VALID : begin
                     RVALID <= 1;
                     if(RVALID && RREADY) begin
-                        R_SAVE_DATA <= RDATA;
                         R_NEXT_STATE <= R_SAVE;
                         RVALID <= 0;
                     end
                 end
+                
                 R_SAVE : begin
-                    R_MASTER_DATA <= R_SAVE_DATA;
+                    R_SAVE_DATA <= RDATA;
                     if(!RVALID) begin
                         R_NEXT_STATE <= R_IDLE;
                     end
